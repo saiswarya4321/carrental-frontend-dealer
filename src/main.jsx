@@ -18,28 +18,21 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 
  import Root from './layouts/Root.jsx';
 
-import Homepage from './pages/user/Homepage.jsx';
-import Cardetails from './pages/user/Cardetails.jsx';
+
 import Outerhome from './components/Outerpages/Outerhome.jsx';
 import Outerlayout from './layouts/Outerlayout.jsx';
-import Adminhome from './pages/admin/Adminhome.jsx';
+
 import Dealerhome from './pages/dealer/Dealerhome.jsx';
 import Adminlayout from './layouts/Adminlayout.jsx';
 import Dealerlayout from './layouts/Dealerlayout.jsx';
 
-import Success from './pages/user/payment/Success.jsx';
-import Booking from './pages/user/Booking.jsx';
-import Profile from './pages/user/Profile.jsx';
-import Allusers from './pages/admin/Allusers.jsx';
-import Alldealers from './pages/admin/Alldealers.jsx';
-import Allbooking from './pages/admin/Allbooking.jsx';
-import Allcars from './pages/admin/Allcars.jsx';
+
 import DealerSignup from './pages/dealer/DealerSignup.jsx';
 import AddCar from './pages/dealer/Addcar.jsx';
 import Viewcars from './pages/dealer/Viewcars.jsx';
 import Editcars from './pages/dealer/Editcars.jsx';
 import Getbooking from './pages/dealer/Getbooking.jsx';
-import Reviews from './pages/user/Reviews.jsx';
+
 import { ThemeProvider } from './context/ThemeContext.jsx';
 
 
@@ -58,32 +51,9 @@ const router=createBrowserRouter([
       { path: "/login", element: <DealerLogin /> },
     ],
   },
-  {
-    path: "/userdashboard", // 👈 top-level parent
-    element: <Root />,
-    children: [
-      { path: "homepage", element: <Homepage /> }, // 
-      { path: "cardetails/:id", element: <Cardetails /> },
-      { path: "payment/success", element: <Success /> },
-      { path: "viewbooking", element: <Booking /> },
-      { path: "profile", element: <Profile /> },
-      { path: "reviews/:id", element: <Reviews /> },
-    ],
-  },
+  
 
-  {
-    path: "/admindashboard", // 👈 top-level parent
-    element: <Adminlayout/>,
-    children: [
-      { path: "adminhome", element: <Adminhome /> }, // 
-      { path: "allusers", element: <Allusers /> }, 
-      { path: "alldealers", element: <Alldealers /> }, 
-      { path: "allbooking", element: <Allbooking /> }, 
-      { path: "allcars", element: <Allcars /> }, 
-      
-      
-    ],
-  },
+  
   {
     path: "/dealerdashboard", // 👈 top-level parent
     element: <Dealerlayout />,
