@@ -5,12 +5,15 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { saveuser } from '../../redux/Userslice';
 import { useTheme } from '../../context/ThemeContext';
+import { toast } from 'react-toastify';
 
 function DealerLogin() {
   const [data, setData] = useState({ email: '', password: '' });
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { darkMode } = useTheme();
+  const [loading, setLoading] = useState(false);
+
 
   const baseUrl = import.meta.env.VITE_API_BASE_URL;
   axios.defaults.withCredentials = true;
@@ -19,13 +22,18 @@ function DealerLogin() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       const res = await axios.post(`${baseUrl}/dealer/login`, data, { withCredentials: true });
       localStorage.setItem('token', res.data.token);
       dispatch(saveuser(res.data.userExist)); // or dealerExist if used
       navigate('/dealerdashboard/dealerhome');
     } catch (err) {
-      alert(err.response?.data?.message || 'Invalid credentials');
+      
+      toast.error(err.response?.data?.message || 'Invalid credentials')
+    }
+    finally{
+      setLoading(false);
     }
   };
 
@@ -38,6 +46,8 @@ function DealerLogin() {
           <Card className={`shadow-lg border-0 rounded-4 ${darkMode ? 'bg-dark text-white' : 'bg-light text-dark'}`}>
             <Card.Body className="p-5">
               <h2 className="mb-4 text-center fw-bold"> Login</h2>
+              {loading && <p className="text-center text-primary fw-semibold mb-3">Logging in... please wait</p>}
+
               <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3">
                   <Form.Label>Email</Form.Label>

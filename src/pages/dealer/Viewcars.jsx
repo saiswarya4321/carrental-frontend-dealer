@@ -75,7 +75,7 @@ function DealerCars() {
           cars.map((car) => (
             <Col key={car._id} md={4}>
               <Card className="mb-4">
-                <Card.Img variant="top" src={car.image || 'default_image.jpg'} />
+                <Card.Img variant="top" src={car.image || 'default_image.jpg'} style={{ height: '200px', objectFit: 'cover', width: '100%' }} />
                 <Card.Body>
                   <Card.Title>{car.brand} {car.model}</Card.Title>
                   <Card.Text>
